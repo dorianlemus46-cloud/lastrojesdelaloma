@@ -1,0 +1,6 @@
+menu_pages/
+claude-webkit/
+CLAUDE.md
+temporary screenshots/
+*.jsonl
+node_modules/

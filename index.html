@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Las Trojes de La Loma | Restaurante en Morelia, Michoacán</title>
+  <meta name="description" content="Restaurante-bar con casi 40 años de tradición en Morelia, Michoacán. Cocina mexicana e internacional en una auténtica troje purépecha del siglo XIX.">
+  <meta property="og:title" content="Las Trojes de La Loma | Restaurante Morelia">
+  <meta property="og:description" content="Casi 40 años de tradición moreliana. Cocina mexicana e internacional en auténtica troje purépecha del siglo XIX.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream:        #F5E6C8;
+      --cream-dark:   #E2CFA0;
+      --espresso:     #120903;
+      --brown-deep:   #1C0E05;
+      --brown:        #281606;
+      --brown-mid:    #3A2010;
+      --brown-light:  #523018;
+      --gold:         #C4922A;
+      --gold-bright:  #D9A83A;
+      --gold-pale:    #E8C870;
+      --terracotta:   #8B3A2C;
+      --text-dark:    #F0DDB8;
+      --text-muted:   #A8885A;
+      --text-light:   #2C1A0E;
+      --text-lmuted:  #6B4C2A;
+      --border:       rgba(196,146,42,0.18);
+      --t:            0.25s cubic-bezier(0.22,1,0.36,1);
+      --ease:         cubic-bezier(0.22,1,0.36,1);
+      --font-d:       'Cormorant Garamond', Georgia, serif;
+      --font-b:       'Lato', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--font-b);
+      background: var(--espresso);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font-b); }
+
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    .section-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: var(--font-d);
+      font-size: clamp(1.9rem, 4.5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+    .divider {
+      display: flex; align-items: center; gap: 14px; justify-content: center; margin: 18px 0 36px;
+    }
+    .divider-line { height: 1px; width: 72px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .divider-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+
+    /* ── BUTTONS ─────────────── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      cursor: pointer; border: none;
+      transition: all var(--t); text-decoration: none; white-space: nowrap;
+    }
+    .btn-gold { background: var(--gold); color: var(--espresso); box-shadow: 0 4px 20px rgba(196,146,42,0.3); }
+    .btn-gold:hover { background: var(--gold-bright); transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 32px rgba(196,146,42,0.44); }
+    .btn-gold:active { transform: translateY(0) scale(0.98); }
+    .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.45); }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.75); transform: translateY(-2px); }
+    .btn-outline:active { transform: translateY(0); }
+
+    /* ── NAV ─────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px; padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(18,9,3,0.9);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--font-d); font-size: 1.35rem; font-weight: 600; color: var(--gold); white-space: nowrap; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted); transition: color var(--t); padding: 4px 0;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--text-dark); transition: all var(--t); }
+    .mobile-menu {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: rgba(18,9,3,0.98); backdrop-filter: blur(20px);
+      z-index: 99; padding: 16px 32px 24px; flex-direction: column;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 13px 0; font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted); border-bottom: 1px solid var(--border); transition: color var(--t);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── HERO ─────────────────── */
+    #inicio {
+      position: relative; height: 100vh; min-height: 620px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('fotosdelrestaurante/fotodelinterior.jpg');
+      background-size: cover; background-position: center 30%;
+      transform: scale(1.05); transition: transform 8s ease-out;
+    }
+    /* Capa oscura sólida + gradiente: legibilidad total */
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.30) 40%, rgba(0,0,0,0.72) 100%),
+        rgba(0,0,0,0.42);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 840px; padding: 0 24px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase;
+      color: var(--gold-pale); border: 1px solid rgba(196,146,42,0.4);
+      padding: 6px 18px; border-radius: 100px; margin-bottom: 24px;
+    }
+    .hero-title {
+      font-family: var(--font-d);
+      font-size: clamp(2.6rem, 7.5vw, 5.4rem); font-weight: 600;
+      line-height: 1.06; letter-spacing: -0.03em;
+      color: #fff; margin-bottom: 20px;
+      text-shadow: 0 2px 32px rgba(0,0,0,0.5);
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.2vw, 1.15rem); font-weight: 300;
+      color: rgba(255,255,255,0.84); max-width: 560px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+    .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-scroll-hint {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+    }
+    .scroll-bar {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.55), transparent);
+      animation: scrollFade 2s ease-in-out infinite;
+    }
+    @keyframes scrollFade { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.15)} }
+
+    /* ── HISTORIA ─────────────── */
+    #historia { background: var(--cream); color: var(--text-light); padding: 100px 0; }
+    .historia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .historia-label { color: var(--terracotta) !important; }
+    .historia-text .section-title { color: var(--text-light); margin-bottom: 22px; }
+    .historia-text p { font-size: 1.05rem; line-height: 1.82; color: var(--text-lmuted); margin-bottom: 40px; }
+    .stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .stat-card {
+      background: var(--brown); border: 1px solid var(--border); border-radius: 10px;
+      padding: 24px 16px; text-align: center; transition: transform var(--t), border-color var(--t);
+    }
+    .stat-card:hover { transform: translateY(-3px); border-color: rgba(196,146,42,0.35); }
+    .stat-number {
+      font-family: var(--font-d); font-size: 2.2rem; font-weight: 700;
+      color: var(--gold); line-height: 1; margin-bottom: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .historia-photo { position: relative; }
+    .historia-photo img { width: 100%; height: 500px; object-fit: cover; border-radius: 12px; display: block; }
+    .historia-photo::before {
+      content: ''; position: absolute; inset: -14px -14px 14px 14px;
+      border: 2px solid var(--gold); border-radius: 14px; opacity: 0.28; pointer-events: none;
+    }
+
+    /* ── MENÚ CTA ─────────────── */
+    #menu { background: var(--brown-deep); padding: 80px 0; text-align: center; }
+    #menu .section-title { color: var(--cream); margin-bottom: 16px; }
+    #menu p { color: var(--text-muted); margin-bottom: 36px; font-size: 1.05rem; }
+
+    /* ── GALERÍA ──────────────── */
+    #galeria { background: var(--espresso); padding: 100px 0; }
+    .galeria-header { text-align: center; margin-bottom: 48px; }
+    .galeria-header .section-title { color: var(--cream); }
+    .galeria-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 280px 280px; gap: 12px; }
+    .galeria-item { position: relative; overflow: hidden; border-radius: 8px; cursor: pointer; }
+    .galeria-item:first-child { grid-row: 1 / 3; }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .galeria-item:hover img { transform: scale(1.07); }
+    .galeria-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, transparent 55%);
+      opacity: 0; transition: opacity var(--t);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .galeria-item:hover .galeria-overlay { opacity: 1; }
+    .zoom-icon {
+      width: 50px; height: 50px;
+      background: rgba(255,255,255,0.14); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .zoom-icon svg { width: 22px; height: 22px; stroke: white; fill: none; stroke-width: 2; }
+    #lightbox { display: none; position: fixed; inset: 0; z-index: 999; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; }
+    #lightbox.open { display: flex; }
+    #lb-img { max-width: 90vw; max-height: 88vh; object-fit: contain; border-radius: 6px; }
+    .lb-close, .lb-prev, .lb-next {
+      position: absolute; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%; color: white; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: background var(--t);
+    }
+    .lb-close:hover, .lb-prev:hover, .lb-next:hover { background: rgba(255,255,255,0.22); }
+    .lb-close { top: 20px; right: 20px; width: 40px; height: 40px; font-size: 1.2rem; }
+    .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); width: 44px; height: 44px; font-size: 1.1rem; }
+    .lb-prev { left: 20px; } .lb-next { right: 20px; }
+
+    /* ── AMBIENTE ─────────────── */
+    #ambiente { background: var(--brown-deep); padding: 100px 0; position: relative; }
+    #ambiente::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(196,146,42,0.07) 0%, transparent 65%);
+    }
+    .ambiente-header { text-align: center; margin-bottom: 60px; position: relative; }
+    .ambiente-header .section-title { color: var(--cream); }
+    .ambiente-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 16px; position: relative; }
+    .amb-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(196,146,42,0.055); border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px; transition: all var(--t);
+    }
+    .amb-item:hover { background: rgba(196,146,42,0.1); border-color: rgba(196,146,42,0.28); transform: translateY(-2px); }
+    .amb-icon {
+      width: 46px; height: 46px; flex-shrink: 0;
+      background: rgba(196,146,42,0.1); border: 1px solid rgba(196,146,42,0.22);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      transition: background var(--t), border-color var(--t);
+    }
+    .amb-item:hover .amb-icon { background: rgba(196,146,42,0.18); border-color: rgba(196,146,42,0.4); }
+    .amb-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .amb-text h3 { font-family: var(--font-d); font-size: 1.08rem; font-weight: 600; color: var(--cream); margin-bottom: 3px; }
+    .amb-text p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ── UBICACIÓN ────────────── */
+    #ubicacion { background: var(--brown); padding: 0; }
+    .mapa-wrap iframe { width: 100%; height: 500px; display: block; border: none; }
+    .mapa-btn-row { background: var(--brown-mid); text-align: center; padding: 32px 24px; }
+    .btn-maps {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; border-radius: 6px; background: var(--gold);
+      color: var(--espresso); font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      cursor: pointer; border: none; text-decoration: none; transition: all var(--t);
+    }
+    .btn-maps:hover { background: var(--gold-bright); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(196,146,42,0.35); }
+    .btn-maps:active { transform: translateY(0); }
+    .btn-maps svg { width: 18px; height: 18px; fill: var(--espresso); }
+
+    /* ── CONTACTO ─────────────── */
+    #contacto { background: var(--espresso); padding: 100px 0 0; }
+
+    .contacto-intro { text-align: center; margin-bottom: 64px; }
+    .contacto-intro .section-title { color: var(--cream); }
+
+    /* Hours display */
+    .hours-display {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px;
+    }
+    .hour-block {
+      background: var(--brown-mid); border: 1px solid var(--border); border-radius: 12px;
+      padding: 28px 32px; position: relative; overflow: hidden;
+    }
+    .hour-block::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--gold); border-radius: 3px 0 0 3px;
+    }
+    .hour-day { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .hour-time { font-family: var(--font-d); font-size: 1.7rem; font-weight: 600; color: var(--cream); line-height: 1.2; }
+
+    /* Contact grid */
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 48px; }
+    .contact-tile {
+      background: var(--brown-mid); border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px; display: flex; flex-direction: column; gap: 12px; transition: all var(--t);
+    }
+    .contact-tile:hover { border-color: rgba(196,146,42,0.3); transform: translateY(-2px); }
+    .contact-tile-icon { font-size: 1.5rem; }
+    .contact-tile-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+    .contact-tile-val { font-size: 1.05rem; color: var(--cream); font-weight: 400; line-height: 1.5; }
+    .btn-tile {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 5px;
+      font-size: 0.74rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      cursor: pointer; border: none; transition: all var(--t);
+      text-decoration: none; align-self: flex-start;
+    }
+    .btn-tile-gold { background: var(--gold); color: var(--espresso); }
+    .btn-tile-gold:hover { background: var(--gold-bright); transform: translateY(-1px); }
+    .btn-tile-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold); }
+    .btn-tile-outline:hover { background: rgba(196,146,42,0.1); transform: translateY(-1px); }
+
+    /* Address bar */
+    .address-bar {
+      background: var(--brown-mid); border: 1px solid var(--border); border-radius: 12px;
+      padding: 20px 28px; display: flex; align-items: center; gap: 16px;
+      margin-bottom: 0; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;
+    }
+    .address-bar-icon { font-size: 1.4rem; flex-shrink: 0; }
+
+    /* ── SOCIAL SECTION ───────── */
+    .social-section {
+      background: var(--brown); padding: 64px 0;
+      border-top: 1px solid var(--border);
+      margin-top: 48px;
+    }
+    .social-section-header { text-align: center; margin-bottom: 40px; }
+    .social-section-header .section-title { color: var(--cream); }
+    .social-section-header p { font-size: 0.95rem; color: var(--text-muted); margin-top: 10px; }
+
+    .social-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    .social-card-big {
+      display: flex; align-items: center; gap: 20px;
+      background: var(--brown-mid); border: 1px solid var(--border); border-radius: 14px;
+      padding: 28px 32px; text-decoration: none;
+      transition: all 0.3s var(--ease); position: relative; overflow: hidden;
+    }
+    .social-card-big::after {
+      content: ''; position: absolute; inset: 0;
+      opacity: 0; transition: opacity 0.3s var(--ease);
+    }
+    .social-card-fb::after { background: radial-gradient(circle at 20% 50%, rgba(24,119,242,0.1) 0%, transparent 70%); }
+    .social-card-ig::after { background: radial-gradient(circle at 20% 50%, rgba(225,48,108,0.1) 0%, transparent 70%); }
+    .social-card-big:hover { transform: translateY(-4px); border-color: rgba(196,146,42,0.35); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+    .social-card-big:hover::after { opacity: 1; }
+    .social-card-big:active { transform: translateY(-1px); }
+
+    .social-card-logo {
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .social-card-fb .social-card-logo { background: #1877F2; }
+    .social-card-ig .social-card-logo { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .social-card-logo svg { width: 28px; height: 28px; fill: white; }
+
+    .social-card-info { flex: 1; position: relative; z-index: 1; }
+    .social-card-platform { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .social-card-handle { font-family: var(--font-d); font-size: 1.3rem; font-weight: 600; color: var(--cream); line-height: 1.2; margin-bottom: 4px; }
+    .social-card-stat { font-size: 0.8rem; color: var(--gold); font-weight: 700; }
+
+    .social-card-arrow {
+      position: relative; z-index: 1; width: 36px; height: 36px;
+      background: rgba(196,146,42,0.12); border: 1px solid var(--border);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1rem; flex-shrink: 0;
+      transition: all 0.3s var(--ease);
+    }
+    .social-card-big:hover .social-card-arrow { background: var(--gold); color: var(--espresso); border-color: var(--gold); transform: translateX(2px); }
+
+    /* ── FOOTER ───────────────── */
+    footer { background: #080301; padding: 24px 0; border-top: 1px solid var(--border); }
+    .footer-bottom { text-align: center; }
+    .footer-bottom p { font-size: 0.76rem; color: var(--text-muted); opacity: 0.55; }
+
+    /* ── WA FLOAT ─────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.42);
+      cursor: pointer; transition: all var(--t); text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.6); }
+    .wa-float:active { transform: scale(0.95); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+
+    /* ── ANIMATION STATES ─────── */
+    /* Hero — arranca invisible, Motion los anima al cargar */
+    .hero-eyebrow, .hero-title, .hero-sub, .hero-ctas, .hero-scroll-hint { opacity: 0; }
+    /* Scroll sections — arranca invisible */
+    .fi { opacity: 0; transform: translateY(22px); }
+    /* Fallback: si Motion no carga, estas clases los muestran */
+    .fi.vis { opacity: 1; transform: none; transition: opacity 0.65s var(--ease), transform 0.65s var(--ease); }
+
+    /* ── RESPONSIVE ───────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .historia-grid { grid-template-columns: 1fr; gap: 44px; }
+      .historia-photo { order: -1; }
+      .historia-photo img { height: 300px; }
+      .historia-photo::before { display: none; }
+      .stats-row { grid-template-columns: 1fr; gap: 10px; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
+      .galeria-item:first-child { grid-row: 1; }
+      .ambiente-grid { grid-template-columns: 1fr; }
+      .hours-display { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .social-cards { grid-template-columns: 1fr; }
+      .lb-prev, .lb-next { display: none; }
+      .wa-float { bottom: 18px; right: 18px; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.2rem; }
+      .galeria-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4,220px); }
+      .galeria-item:first-child { grid-row: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fi, .hero-eyebrow, .hero-title, .hero-sub, .hero-ctas, .hero-scroll-hint {
+        opacity: 1 !important; transform: none !important; transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="#inicio" class="nav-logo">Las Trojes de La Loma</a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#historia">Historia</a></li>
+    <li><a href="menu.html" target="_blank">Menú</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#ambiente">Ambiente</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#inicio">Inicio</a>
+  <a href="#historia">Historia</a>
+  <a href="menu.html" target="_blank">Menú</a>
+  <a href="#galeria">Galería</a>
+  <a href="#ambiente">Ambiente</a>
+  <a href="#ubicacion">Ubicación</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ── HERO ── -->
+<section id="inicio" aria-label="Inicio">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Morelia, Michoacán · Desde 1986</span>
+    <h1 class="hero-title">Cuatro décadas<br>siendo el sabor<br>de Morelia</h1>
+    <p class="hero-sub">Cocina mexicana e internacional en una auténtica troje purépecha del siglo XIX</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/524433147344?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20una%20reservaci%C3%B3n%20en%20Las%20Trojes"
+         target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar mesa
+      </a>
+      <a href="menu.html" target="_blank" class="btn btn-outline">Ver menú</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint" aria-hidden="true">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ── HISTORIA ── -->
+<section id="historia" aria-labelledby="historia-h">
+  <div class="container">
+    <div class="historia-grid">
+      <div class="historia-text">
+        <span class="section-label historia-label">Nuestra historia</span>
+        <h2 class="section-title fi" id="historia-h">Una troje, una historia,<br>casi cuatro décadas</h2>
+        <p class="fi">Desde hace casi cuatro décadas, Las Trojes se distingue por ser un lugar de tradición para los morelianos. Nuestro espacio está construido sobre una troje purépecha — una casa de madera típica de los indígenas michoacanos de principios del siglo XIX — que sigue siendo el corazón de nuestra historia.</p>
+        <div class="stats-row">
+          <div class="stat-card fi" data-delay="0">
+            <div class="stat-number" data-target="40" data-prefix="+" data-suffix="">0</div>
+            <div class="stat-label">Años de tradición</div>
+          </div>
+          <div class="stat-card fi" data-delay="0.12">
+            <div class="stat-number" data-target="12700" data-prefix="" data-suffix="+">0</div>
+            <div class="stat-label">Visitas registradas</div>
+          </div>
+          <div class="stat-card fi" data-delay="0.24">
+            <div class="stat-number" data-target="92" data-prefix="" data-suffix="%">0</div>
+            <div class="stat-label">De recomendaciones</div>
+          </div>
+        </div>
+      </div>
+      <div class="historia-photo fi">
+        <img src="https://caniracmichoacan.org.mx/wp-content/uploads/2022/02/IMG-20220208-WA0019-sabino-lopez.jpg"
+             alt="Interior de Las Trojes de La Loma" loading="lazy" width="580" height="500">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── MENÚ CTA ── -->
+<section id="menu" aria-label="Ver menú">
+  <div class="container">
+    <span class="section-label fi">Nuestra cocina</span>
+    <h2 class="section-title fi">El menú completo</h2>
+    <p class="fi">Entradas, sopas, carnes a la parrilla, pescados y mariscos,<br>pasta, pollo y cortes premium Sterling Silver.</p>
+    <a href="menu.html" target="_blank" class="btn btn-gold fi" style="font-size:0.9rem;padding:15px 34px;">
+      Ver menú completo
+    </a>
+  </div>
+</section>
+
+<!-- ── GALERÍA ── -->
+<section id="galeria" aria-labelledby="galeria-h">
+  <div class="container">
+    <div class="galeria-header fi">
+      <span class="section-label">Conócenos</span>
+      <h2 class="section-title" id="galeria-h">El lugar</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+    <div class="galeria-grid">
+      <div class="galeria-item fi" data-index="0" role="button" tabindex="0" aria-label="Ver foto 1">
+        <img src="https://enam-cdn.carta.menu/storage/media/company_gallery/67081684/conversions/contribution_gallery.jpg" alt="Las Trojes — vista del restaurante" loading="lazy">
+        <div class="galeria-overlay"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div></div>
+      </div>
+      <div class="galeria-item fi" data-delay="0.08" data-index="1" role="button" tabindex="0" aria-label="Ver foto 2">
+        <img src="https://enam-cdn.carta.menu/storage/media/company_gallery/62582199/conversions/contribution_gallery.jpg" alt="Las Trojes — interior" loading="lazy">
+        <div class="galeria-overlay"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div></div>
+      </div>
+      <div class="galeria-item fi" data-delay="0.16" data-index="2" role="button" tabindex="0" aria-label="Ver foto 3">
+        <img src="https://caniracmichoacan.org.mx/wp-content/uploads/2022/02/IMG-20220208-WA0015-sabino-lopez.jpg" alt="Las Trojes — ambiente" loading="lazy">
+        <div class="galeria-overlay"><div class="zoom-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <img id="lb-img" src="" alt="Foto del restaurante">
+  <button class="lb-close" aria-label="Cerrar">&times;</button>
+  <button class="lb-prev" aria-label="Anterior">&#8592;</button>
+  <button class="lb-next" aria-label="Siguiente">&#8594;</button>
+</div>
+
+<!-- ── AMBIENTE ── -->
+<section id="ambiente" aria-labelledby="ambiente-h">
+  <div class="container">
+    <div class="ambiente-header fi">
+      <span class="section-label">Experiencia</span>
+      <h2 class="section-title" id="ambiente-h">Más que una comida,<br>una experiencia</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+    <div class="ambiente-grid">
+      <div class="amb-item fi"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="amb-text"><h3>Música en vivo</h3><p>Piano en vivo para ambientar su velada</p></div></div>
+      <div class="amb-item fi" data-delay="0.07"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 12h8M12 8v8"/></svg></div><div class="amb-text"><h3>Terraza al aire libre</h3><p>Área para fumadores en terraza exterior</p></div></div>
+      <div class="amb-item fi" data-delay="0.14"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div class="amb-text"><h3>Arte michoacano</h3><p>Colección de arte de la región en nuestras paredes</p></div></div>
+      <div class="amb-item fi" data-delay="0.21"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="amb-text"><h3>Valet parking</h3><p>Servicio de estacionamiento sin costo adicional</p></div></div>
+      <div class="amb-item fi" data-delay="0.07"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 22h8M12 2a4 4 0 0 1 4 4c0 1.5-.8 2.8-2 3.5V12H12V9.5C10.8 8.8 10 7.5 10 6a4 4 0 0 1 2-3.46"/><path d="M7 22v-2a5 5 0 0 1 10 0v2"/></svg></div><div class="amb-text"><h3>Ocasiones especiales</h3><p>El escenario perfecto para celebrar lo que importa</p></div></div>
+      <div class="amb-item fi" data-delay="0.14"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="amb-text"><h3>Familias y grupos</h3><p>Espacio amplio para reuniones de todos los tamaños</p></div></div>
+      <div class="amb-item fi" data-delay="0.21"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M12 12v5M9 14.5h6"/></svg></div><div class="amb-text"><h3>Comidas de negocios</h3><p>Ambiente distinguido para encuentros ejecutivos</p></div></div>
+      <div class="amb-item fi" data-delay="0.28"><div class="amb-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="1"/><path d="M12 7v5l3 3M5 11a7 7 0 1 0 14 0"/><path d="M5 11H2M22 11h-3M12 20v2M8 20l-1 2M16 20l1 2"/></svg></div><div class="amb-text"><h3>Accesibilidad</h3><p>Accesible para personas en silla de ruedas</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── UBICACIÓN ── -->
+<section id="ubicacion" aria-label="Ubicación">
+  <div class="mapa-wrap">
+    <iframe src="https://maps.google.com/maps?q=19.6803301,-101.1841292&hl=es&z=17&output=embed"
+      title="Mapa Las Trojes de La Loma" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </div>
+  <div class="mapa-btn-row">
+    <a href="https://www.google.com/maps/place/Las+Trojes+de+La+Loma/@19.6803301,-101.1841292,17z"
+       target="_blank" rel="noopener noreferrer" class="btn-maps">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      Abrir en Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contacto" aria-labelledby="contacto-h">
+  <div class="container">
+    <div class="contacto-intro fi">
+      <span class="section-label">Encuéntranos</span>
+      <h2 class="section-title" id="contacto-h">Horarios &amp; Contacto</h2>
+      <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+    </div>
+
+    <!-- HORARIOS -->
+    <div class="hours-display">
+      <div class="hour-block fi">
+        <div class="hour-day">Lunes — Sábado</div>
+        <div class="hour-time">1:00 PM — 12:00 AM</div>
+      </div>
+      <div class="hour-block fi" data-delay="0.1">
+        <div class="hour-day">Domingo</div>
+        <div class="hour-time">1:00 PM — 6:00 PM</div>
+      </div>
+    </div>
+
+    <!-- CONTACTO TILES -->
+    <div class="contact-grid">
+      <div class="contact-tile fi">
+        <span class="contact-tile-icon">📞</span>
+        <div class="contact-tile-label">Teléfono</div>
+        <div class="contact-tile-val">443 314 7344</div>
+        <a href="tel:+524433147344" class="btn-tile btn-tile-gold">Llamar ahora</a>
+      </div>
+      <div class="contact-tile fi" data-delay="0.1">
+        <span class="contact-tile-icon">✉️</span>
+        <div class="contact-tile-label">Correo electrónico</div>
+        <div class="contact-tile-val">lastrojes51@gmail.com</div>
+        <a href="mailto:lastrojes51@gmail.com" class="btn-tile btn-tile-outline">Enviar correo</a>
+      </div>
+      <div class="contact-tile fi" data-delay="0.2">
+        <span class="contact-tile-icon">💬</span>
+        <div class="contact-tile-label">WhatsApp</div>
+        <div class="contact-tile-val">443 314 7344</div>
+        <a href="https://wa.me/524433147344?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20una%20reservaci%C3%B3n%20en%20Las%20Trojes"
+           target="_blank" rel="noopener noreferrer" class="btn-tile btn-tile-gold">Reservar mesa</a>
+      </div>
+    </div>
+
+    <!-- DIRECCIÓN -->
+    <div class="address-bar fi">
+      <span class="address-bar-icon">📍</span>
+      <span>Privada Juan Sebastián Bach No. 51, Col. La Loma, Morelia, Michoacán, C.P. 58290</span>
+    </div>
+  </div>
+
+  <!-- REDES SOCIALES -->
+  <div class="social-section">
+    <div class="container">
+      <div class="social-section-header fi">
+        <span class="section-label">Síguenos</span>
+        <h2 class="section-title">Únete a nuestra comunidad</h2>
+        <p>Descubre platillos, eventos y la historia viva de Las Trojes</p>
+      </div>
+      <div class="social-cards">
+        <a href="https://www.facebook.com/lastrojesmorelia" target="_blank" rel="noopener noreferrer"
+           class="social-card-big social-card-fb fi" data-delay="0">
+          <div class="social-card-logo">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </div>
+          <div class="social-card-info">
+            <div class="social-card-platform">Facebook</div>
+            <div class="social-card-handle">lastrojesmorelia</div>
+            <div class="social-card-stat">7,700+ seguidores</div>
+          </div>
+          <div class="social-card-arrow">→</div>
+        </a>
+        <a href="https://www.instagram.com/lastrojes.restaurante" target="_blank" rel="noopener noreferrer"
+           class="social-card-big social-card-ig fi" data-delay="0.12">
+          <div class="social-card-logo">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="social-card-info">
+            <div class="social-card-platform">Instagram</div>
+            <div class="social-card-handle">@lastrojes.restaurante</div>
+            <div class="social-card-stat">Síguenos para ver más</div>
+          </div>
+          <div class="social-card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Las Trojes de La Loma. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ── -->
+<a href="https://wa.me/524433147344?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20una%20reservaci%C3%B3n%20en%20Las%20Trojes"
+   target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ── SCRIPTS ── -->
+<script>
+  // ── Nav móvil ──
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', function() {
+    var open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ── Nav active state ──
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var sections = document.querySelectorAll('section[id]');
+  new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { threshold: 0.35 }).observe && sections.forEach(function(s) {
+    new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        navLinks.forEach(function(a) {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + entries[0].target.id);
+        });
+      }
+    }, { threshold: 0.35 }).observe(s);
+  });
+
+  // ── Lightbox ──
+  var photos = [
+    'https://enam-cdn.carta.menu/storage/media/company_gallery/67081684/conversions/contribution_gallery.jpg',
+    'https://enam-cdn.carta.menu/storage/media/company_gallery/62582199/conversions/contribution_gallery.jpg',
+    'https://caniracmichoacan.org.mx/wp-content/uploads/2022/02/IMG-20220208-WA0015-sabino-lopez.jpg'
+  ];
+  var lbIdx = 0, lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img');
+  function openLb(i) { lbIdx=i; lbImg.src=photos[i]; lb.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow=''; }
+  function navLb(d) { lbIdx=(lbIdx+d+photos.length)%photos.length; lbImg.src=photos[lbIdx]; }
+  document.querySelectorAll('.galeria-item').forEach(function(item) {
+    item.addEventListener('click', function() { openLb(+item.dataset.index); });
+    item.addEventListener('keydown', function(e) { if(e.key==='Enter'||e.key===' ') openLb(+item.dataset.index); });
+  });
+  document.querySelector('.lb-close').addEventListener('click', closeLb);
+  document.querySelector('.lb-prev').addEventListener('click', function() { navLb(-1); });
+  document.querySelector('.lb-next').addEventListener('click', function() { navLb(1); });
+  lb.addEventListener('click', function(e) { if(e.target===lb) closeLb(); });
+  document.addEventListener('keydown', function(e) {
+    if (!lb.classList.contains('open')) return;
+    if (e.key==='Escape') closeLb();
+    if (e.key==='ArrowLeft') navLb(-1);
+    if (e.key==='ArrowRight') navLb(1);
+  });
+
+  // ── Contador animado (independiente de Motion) ──
+  function countUp(el, target, duration) {
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    var start = performance.now();
+    function step(now) {
+      var t = Math.min((now - start) / duration, 1);
+      // ease out quart: suave al principio, desacelera al final
+      var eased = 1 - Math.pow(1 - t, 4);
+      var val = Math.round(eased * target);
+      el.textContent = prefix + (val >= 1000 ? val.toLocaleString('es-MX') : val) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = prefix + (target >= 1000 ? target.toLocaleString('es-MX') : target) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  // Observar las stat cards para disparar el contador cuando entren al viewport
+  var cntObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var numEl = e.target.querySelector('[data-target]');
+      if (numEl && !numEl.dataset.counted) {
+        numEl.dataset.counted = '1';
+        countUp(numEl, +numEl.dataset.target, 3000);
+      }
+      cntObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-card').forEach(function(el) { cntObs.observe(el); });
+
+  // ── Hero bg subtle zoom ──
+  var heroBg = document.getElementById('heroBg');
+  if (heroBg) setTimeout(function() { heroBg.style.transform = 'scale(1)'; }, 100);
+
+  // ── FALLBACK ANIMATIONS (si Motion CDN falla) ──
+  // Se activa a 1.5s. Si Motion ya cargó, no hace nada (window._mok = true)
+  var _fbTimer = setTimeout(function() {
+    if (window._mok) return;
+    // Mostrar hero
+    ['hero-eyebrow','hero-title','hero-sub','hero-ctas','hero-scroll-hint'].forEach(function(cls) {
+      var el = document.querySelector('.' + cls);
+      if (el) { el.style.transition = 'opacity 0.7s ease'; el.style.opacity = '1'; }
+    });
+    // Reveal .fi via IntersectionObserver
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        var d = parseFloat(e.target.dataset.delay || 0) * 1000;
+        (function(el){ setTimeout(function(){ el.classList.add('vis'); }, d); })(e.target);
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '-40px 0px' });
+    document.querySelectorAll('.fi').forEach(function(el) { io.observe(el); });
+    // Failsafe final
+    setTimeout(function() {
+      document.querySelectorAll('.fi:not(.vis)').forEach(function(el) { el.classList.add('vis'); });
+    }, 3000);
+  }, 1500);
+</script>
+
+<!-- ── MOTION (Emil Kowalski style) ── -->
+<script type="module">
+  import { animate, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@11/+esm';
+  window._mok = true;
+  clearTimeout(window._fbTimer);
+
+  const ease = [0.22, 1, 0.36, 1];
+
+  // Hero entrance — stagger elegante
+  const heroEls = ['.hero-eyebrow', '.hero-title', '.hero-sub', '.hero-ctas', '.hero-scroll-hint'];
+  heroEls.forEach(function(sel, i) {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    animate(el,
+      { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0px)'] },
+      { duration: 0.75, delay: 0.1 + i * 0.14, easing: ease }
+    );
+  });
+
+  // Scroll animations para .fi
+  inView('.fi', function({ target }) {
+    const d = parseFloat(target.dataset.delay || 0);
+    animate(target,
+      { opacity: [0, 1], transform: ['translateY(22px)', 'translateY(0px)'] },
+      { duration: 0.65, delay: d, easing: ease }
+    );
+  }, { margin: '-40px 0px' });
+</script>
+
+</body>
+</html>

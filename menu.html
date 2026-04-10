@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menú — Las Trojes de La Loma</title>
+  <meta name="description" content="Menú completo de Las Trojes de La Loma. Entradas, sopas, carnes, pescados, pollo, pasta y cortes premium Sterling Silver.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #F5E6C8;
+      --espresso: #120903;
+      --brown-deep: #1C0E05;
+      --brown: #281606;
+      --brown-mid: #3A2010;
+      --brown-light: #523018;
+      --gold: #C4922A;
+      --gold-bright: #D9A83A;
+      --text-dark: #F0DDB8;
+      --text-muted: #A8885A;
+      --border: rgba(196,146,42,0.18);
+      --t: 0.25s cubic-bezier(0.22,1,0.36,1);
+      --font-d: 'Cormorant Garamond', Georgia, serif;
+      --font-b: 'Lato', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font-b);
+      background: var(--brown-deep);
+      color: var(--text-dark);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: var(--font-b); }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HEADER ── */
+    .menu-header {
+      background: rgba(18, 9, 3, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .menu-logo {
+      font-family: var(--font-d);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color var(--t);
+    }
+    .back-link:hover { color: var(--gold); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ── HERO STRIP ── */
+    .menu-hero {
+      background: var(--brown);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 0 40px;
+      text-align: center;
+    }
+    .menu-hero-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .menu-hero-title {
+      font-family: var(--font-d);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .menu-hero-note {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      justify-content: center;
+      margin: 14px 0 0;
+    }
+    .divider-line {
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+    .divider-diamond {
+      width: 7px; height: 7px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ── TABS ── */
+    .tabs-wrap {
+      background: var(--espresso);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 64px;
+      z-index: 9;
+    }
+    .tabs-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tabs-scroll::-webkit-scrollbar { display: none; }
+    .tabs {
+      display: flex;
+      gap: 0;
+      width: max-content;
+      min-width: 100%;
+    }
+    .tab-btn {
+      padding: 16px 20px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      transition: all var(--t);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--gold); background: rgba(196,146,42,0.04); }
+    .tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+      background: rgba(196,146,42,0.06);
+    }
+
+    /* ── CONTENT ── */
+    .menu-body { padding: 48px 0 80px; }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .category-title {
+      font-family: var(--font-d);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .category-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 14px;
+    }
+
+    .menu-card {
+      background: var(--brown-mid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      transition: all var(--t);
+    }
+    .menu-card:hover {
+      border-color: rgba(196,146,42,0.38);
+      background: var(--brown-light);
+      transform: translateY(-2px);
+    }
+    .menu-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 6px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(196,146,42,0.07);
+    }
+    .menu-name {
+      font-family: var(--font-d);
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .menu-price {
+      font-family: var(--font-d);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .menu-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .premium-badge {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(196,146,42,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(196,146,42,0.28);
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-bottom: 8px;
+    }
+
+    .section-note {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: rgba(196,146,42,0.06);
+      border-left: 2px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .sterling-box {
+      background: rgba(196,146,42,0.07);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .sterling-box strong {
+      display: block;
+      font-family: var(--font-d);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .sterling-box p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; font-style: italic; }
+
+    .guarn-box {
+      margin-top: 40px;
+      padding: 24px 28px;
+      background: rgba(196,146,42,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .guarn-box h3 {
+      font-family: var(--font-d);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .guarn-box p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px; }
+    .guarn-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .guarn-chip {
+      background: var(--brown-mid);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-size: 0.8rem;
+      color: var(--text-dark);
+    }
+
+    /* ── FOOTER ── */
+    .menu-footer {
+      background: #080301;
+      border-top: 1px solid var(--border);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .menu-footer p { font-size: 0.8rem; color: var(--text-muted); opacity: 0.6; }
+    .wa-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      background: #25D366;
+      color: white;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: all var(--t);
+    }
+    .wa-link:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(37,211,102,0.4); }
+    .wa-link svg { width: 18px; height: 18px; fill: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .menu-header { padding: 0 16px; }
+      .menu-hero { padding: 32px 0 28px; }
+      .menu-footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="menu-header">
+  <span class="menu-logo">Las Trojes de La Loma</span>
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    Volver al inicio
+  </a>
+</header>
+
+<!-- HERO STRIP -->
+<div class="menu-hero">
+  <span class="menu-hero-label">Precios con I.V.A. incluido</span>
+  <h1 class="menu-hero-title">Nuestro Menú</h1>
+  <p class="menu-hero-note">Cocina mexicana e internacional · Morelia, Michoacán</p>
+  <div class="divider"><div class="divider-line"></div><div class="divider-diamond"></div><div class="divider-line"></div></div>
+</div>
+
+<!-- TABS BAR -->
+<div class="tabs-wrap">
+  <div class="tabs-scroll">
+    <div class="tabs" role="tablist" aria-label="Categorías del menú">
+      <button class="tab-btn active" data-tab="entradas" role="tab" aria-selected="true">Entradas</button>
+      <button class="tab-btn" data-tab="ensaladas" role="tab" aria-selected="false">Ensaladas</button>
+      <button class="tab-btn" data-tab="sopas" role="tab" aria-selected="false">Sopas y Caldos</button>
+      <button class="tab-btn" data-tab="pasta" role="tab" aria-selected="false">Pasta</button>
+      <button class="tab-btn" data-tab="pollo" role="tab" aria-selected="false">Pollo</button>
+      <button class="tab-btn" data-tab="parrilla" role="tab" aria-selected="false">De la Parrilla</button>
+      <button class="tab-btn" data-tab="premium" role="tab" aria-selected="false">Cortes Premium</button>
+      <button class="tab-btn" data-tab="pescados" role="tab" aria-selected="false">Pescados y Mariscos</button>
+      <button class="tab-btn" data-tab="complementos" role="tab" aria-selected="false">Complementos</button>
+    </div>
+  </div>
+</div>
+
+<!-- MENU CONTENT -->
+<main class="menu-body">
+  <div class="container">
+
+    <!-- ENTRADAS -->
+    <div class="tab-panel active" id="entradas" role="tabpanel">
+      <h2 class="category-title">Entradas</h2>
+      <p class="category-desc">Para abrir el apetito</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Taco de camarón</span><span class="menu-price">$78</span></div><p class="menu-desc">Acompañado de una salsa especial de la casa</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Orden de 4 sopes</span><span class="menu-price">$109</span></div><p class="menu-desc">Frijoles, lechuga, queso</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Queso fundido</span><span class="menu-price">$165</span></div><p class="menu-desc">Queso asadero gratinado</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Queso fundido combinado</span><span class="menu-price">$207</span></div><p class="menu-desc">Rajas, chorizo o champiñones</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Queso fundido con chistorra</span><span class="menu-price">$207</span></div><p class="menu-desc">Queso asadero gratinado con chistorra al carbón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Queso adobera</span><span class="menu-price">$181</span></div><p class="menu-desc">Asado a la plancha, bañado con nuestra salsa de chipotle</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Champiñones al ajillo</span><span class="menu-price">$194</span></div><p class="menu-desc">Ajo, chile guajillo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Setas de la casa</span><span class="menu-price">$195</span></div><p class="menu-desc">Pepinillo agrio, chile, queso, cebolla, aderezo francés</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Setas ajillo</span><span class="menu-price">$195</span></div><p class="menu-desc">Ajo, chile guajillo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Ostiones Rockefeller</span><span class="menu-price">$213</span></div><p class="menu-desc">En su concha, espinaca, crema, gratinados</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Tuétano</span><span class="menu-price">$232</span></div><p class="menu-desc">Deshuesado, listo para saborear en tacos</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pulpo al ajillo</span><span class="menu-price">$210</span></div><p class="menu-desc">Ajo, chile guajillo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pulpo a los dos chiles</span><span class="menu-price">$330</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Cecina (carne seca)</span><span class="menu-price">$221</span></div><p class="menu-desc">Marinada y acompañada de guacamole</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Chistorra</span><span class="menu-price">$185</span></div><p class="menu-desc">Al carbón, bañada con salsa campesina</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete de trucha salmonada rasurada</span><span class="menu-price">$260</span></div><p class="menu-desc">Cebolla, cilantro, chile verde, limón, vino blanco</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Machitos</span><span class="menu-price">$217</span></div><p class="menu-desc">Tripa de ternera al carbón</p></div>
+      </div>
+    </div>
+
+    <!-- ENSALADAS -->
+    <div class="tab-panel" id="ensaladas" role="tabpanel">
+      <h2 class="category-title">Ensaladas</h2>
+      <p class="category-desc">Frescas y bien sazonadas, de nuestra barra desinfectada</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Lecumberri</span><span class="menu-price">$208</span></div><p class="menu-desc">Con camarón. Lechuga, berros, palmitos, germen de alfalfa, aderezo francés</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">César</span><span class="menu-price">$145</span></div><p class="menu-desc">Lechuga, anchoa, queso parmesano, huevo crudo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Verde</span><span class="menu-price">$139</span></div><p class="menu-desc">Lechuga, espinaca, berros, chayote, aguacate, aderezo mil islas</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Paco</span><span class="menu-price">$134</span></div><p class="menu-desc">Lechuga, jitomate, aguacate, cebolla morada y vinagreta</p></div>
+      </div>
+      <div class="section-note">* Los platillos crudos se sirven bajo consideración del comensal y el riesgo que esto implica.</div>
+    </div>
+
+    <!-- SOPAS -->
+    <div class="tab-panel" id="sopas" role="tabpanel">
+      <h2 class="category-title">Sopas y Caldos</h2>
+      <p class="category-desc">Caldos y cremas preparados con cariño</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Ostión</span><span class="menu-price">$195</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Consomé arriero</span><span class="menu-price">$99</span></div><p class="menu-desc">Consomé de pollo, verduras, huevo cocido, queso, pollo desmenuzado</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Tarasca</span><span class="menu-price">$99</span></div><p class="menu-desc">Crema de frijol, totopos de maíz, chile guajillo, queso</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Sábana de pollo</span><span class="menu-price">$245</span></div><p class="menu-desc">Pechuga aplastada a la plancha</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Fideo</span><span class="menu-price">$92</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Puchero</span><span class="menu-price">$160</span></div><p class="menu-desc">Caldo de res, chambarete, verduras cocidas</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Crema de cilantro</span><span class="menu-price">$105</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Crema de elote con chile poblano</span><span class="menu-price">$105</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Jugo de carne</span><span class="menu-price">$122</span></div><p class="menu-desc">Preparado en su mesa y a su gusto</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Jugo de carne con ostiones</span><span class="menu-price">$178</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Crema de queso</span><span class="menu-price">$108</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Tlalpeño</span><span class="menu-price">$103</span></div><p class="menu-desc">Consomé de pollo, verduras, garbanzo, pollo desmenuzado, chipotle</p></div>
+      </div>
+    </div>
+
+    <!-- PASTA -->
+    <div class="tab-panel" id="pasta" role="tabpanel">
+      <h2 class="category-title">Pasta</h2>
+      <p class="category-desc">Spaghetti con ingredientes frescos y combinaciones únicas</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Spaghetti Gamberetti</span><span class="menu-price">$266</span></div><p class="menu-desc">Calabaza, zanahoria, aceituna negra, camarón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Spaghetti Gattuso</span><span class="menu-price">$258</span></div><p class="menu-desc">Carne de res, pollo, salsa de tomate</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Spaghetti Maldini</span><span class="menu-price">$268</span></div><p class="menu-desc">Salmón, pimiento morrón, champiñones, vino blanco, crema</p></div>
+      </div>
+    </div>
+
+    <!-- POLLO -->
+    <div class="tab-panel" id="pollo" role="tabpanel">
+      <h2 class="category-title">Pollo</h2>
+      <p class="category-desc">Al carbón, a la plancha o relleno — siempre jugoso</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">½ Pollo a las finas hierbas</span><span class="menu-price">$265</span></div><p class="menu-desc">Pierna, muslo y pechuga deshuesada al carbón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">½ Pollo a las brasas</span><span class="menu-price">$265</span></div><p class="menu-desc">Pierna, muslo y pechuga deshuesada al carbón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Sábana de pollo</span><span class="menu-price">$245</span></div><p class="menu-desc">Pechuga aplastada a la plancha</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pollo relleno</span><span class="menu-price">$248</span></div><p class="menu-desc">Con tocino y queso, bañado en salsa BBQ</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pechuga del chef</span><span class="menu-price">$248</span></div><p class="menu-desc">Rellena de queso asadero, tocino, salsa chile poblano y champiñones</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pechuga a mango</span><span class="menu-price">$248</span></div><p class="menu-desc">A la plancha, bañada en salsa de mango</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Pechuga parmesana</span><span class="menu-price">$248</span></div><p class="menu-desc">Empanizada, queso parmesano</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Brocheta de pollo</span><span class="menu-price">$243</span></div><p class="menu-desc">Tiras de pechuga, cebolla, champiñones, tocino, jitomate, morrón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Fajitas de pollo al sartén</span><span class="menu-price">$243</span></div><p class="menu-desc">Tiras de pechuga, pimiento verde, cebolla, paprika</p></div>
+      </div>
+      <div class="section-note">Todos los platillos se sirven con botana de verduras, nopales, mantequilla, salsas, pan y tortillas hechas en casa.</div>
+    </div>
+
+    <!-- PARRILLA -->
+    <div class="tab-panel" id="parrilla" role="tabpanel">
+      <h2 class="category-title">De Nuestra Parrilla</h2>
+      <p class="category-desc">Cortes al carbón con el sabor de casi cuatro décadas</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete chemita</span><span class="menu-price">$361</span></div><p class="menu-desc">Aprox. 300 g. En cama de puré de papa bañado con salsa mernée</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete arriero</span><span class="menu-price">$353</span></div><p class="menu-desc">Aprox. 300 g. Al carbón, bañado en salsa de chile árbol</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete poblano</span><span class="menu-price">$353</span></div><p class="menu-desc">Aprox. 300 g. Relleno de rajas de chile poblano, cebollitas, salsa blanca</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete al ajillo</span><span class="menu-price">$358</span></div><p class="menu-desc">Aprox. 300 g. Corazón de filete, ajo, chile guajillo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete tostado</span><span class="menu-price">$371</span></div><p class="menu-desc">Aprox. 300 g. Capeado y elevado en aceite de oliva</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete Don Carlos</span><span class="menu-price">$366</span></div><p class="menu-desc">Aprox. 300 g. En cama de espinacas a la crema y salsa de anchoas</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Medallones al gusto</span><span class="menu-price">$356</span></div><p class="menu-desc">Aceituna, jerez, pimienta, limón, queso azul, mostaza, mezcal</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Medallones tres quesos</span><span class="menu-price">$359</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Churrasco</span><span class="menu-price">$365</span></div><p class="menu-desc">Aprox. 300 g. Corazón de filete en corte mariposa</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Arrachera natural</span><span class="menu-price">$368</span></div><p class="menu-desc">Aprox. 300 g.</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Arrachera marinada</span><span class="menu-price">$368</span></div><p class="menu-desc">Aprox. 300 g.</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Cabréria de res</span><span class="menu-price">$490</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Milanesa</span><span class="menu-price">$347</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Tampiquéña</span><span class="menu-price">$366</span></div><p class="menu-desc">Tira de filete, guacamole, rajas, frijoles, enchiladas</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Puntas al gusto</span><span class="menu-price">$335</span></div><p class="menu-desc">Cacahuate, chipotle, albañil, tequila</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Parrillada de carne por persona</span><span class="menu-price">$360</span></div><p class="menu-desc">Arrachera, puntas de filete en chipotle, chorizo, papas al horno</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Parrillada ranchera por persona</span><span class="menu-price">$347</span></div><p class="menu-desc">Machitos, arrachera, pollo, churrasco, chiles toreados y cebollas</p></div>
+      </div>
+      <div class="guarn-box">
+        <h3>Guarniciones incluidas</h3>
+        <p>Elija una guarnición con su platillo:</p>
+        <div class="guarn-chips">
+          <span class="guarn-chip">Ensalada de la casa</span>
+          <span class="guarn-chip">Papa Trojes</span>
+          <span class="guarn-chip">Espinacas a la crema</span>
+          <span class="guarn-chip">Verduras del día</span>
+          <span class="guarn-chip">Arroz</span>
+          <span class="guarn-chip">Cebollitas cambray</span>
+          <span class="guarn-chip">Frijoles refritos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="tab-panel" id="premium" role="tabpanel">
+      <h2 class="category-title">Cortes Premium</h2>
+      <div class="sterling-box">
+        <strong>Sterling Silver®</strong>
+        <p>Desde 1989, Sterling Silver ha establecido la norma de calidad en carnes. Los selectos cortes de vacuno alimentado con grano en las amplias planicies de Norte América han ganado una reputación inigualable.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="premium-badge">Sterling Silver</div>
+          <div class="menu-card-head"><span class="menu-name">Corte vaquero</span><span class="menu-price">$645</span></div>
+          <p class="menu-desc">Aprox. 400 g.</p>
+        </div>
+        <div class="menu-card">
+          <div class="premium-badge">Sterling Silver</div>
+          <div class="menu-card-head"><span class="menu-name">Rib Eye</span><span class="menu-price">$730</span></div>
+          <p class="menu-desc">Aprox. 400 g.</p>
+        </div>
+        <div class="menu-card">
+          <div class="premium-badge">Sterling Silver</div>
+          <div class="menu-card-head"><span class="menu-name">Sirloin</span><span class="menu-price">$545</span></div>
+          <p class="menu-desc">Aprox. 400 g.</p>
+        </div>
+        <div class="menu-card">
+          <div class="premium-badge">Sterling Silver</div>
+          <div class="menu-card-head"><span class="menu-name">Asado de tira</span><span class="menu-price">$650</span></div>
+          <p class="menu-desc">Aprox. 400 g.</p>
+        </div>
+        <div class="menu-card">
+          <div class="premium-badge">Sterling Silver</div>
+          <div class="menu-card-head"><span class="menu-name">New York</span><span class="menu-price">$620</span></div>
+          <p class="menu-desc">Aprox. 400 g.</p>
+        </div>
+      </div>
+      <div class="section-note">El tiempo de cocción depende del número de comensales y el peso del corte. Término sugerido por el chef: Término medio.</div>
+    </div>
+
+    <!-- PESCADOS -->
+    <div class="tab-panel" id="pescados" role="tabpanel">
+      <h2 class="category-title">Pescados y Mariscos</h2>
+      <p class="category-desc">Del mar a la parrilla, con sazón michoacano</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Atún al gusto</span><span class="menu-price">$308</span></div><p class="menu-desc">A la parrilla, al mango o a la naranja</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete de huachinango</span><span class="menu-price">$353</span></div><p class="menu-desc">A la naranja, al mango o vino blanco</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete de huachinango Trojes</span><span class="menu-price">$353</span></div><p class="menu-desc">Empapelado a las brasas, cebolla, cilantro, crema, vino blanco</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Trucha especial Trojes</span><span class="menu-price">$327</span></div><p class="menu-desc">Empapelada. Rellena con camarón, ostión, cebolla, pimientos, bechamel</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Trucha arcoíris</span><span class="menu-price">$252</span></div><p class="menu-desc">Parrilla, menier o al mojo de ajo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Trucha salmonada</span><span class="menu-price">$314</span></div><p class="menu-desc">Parrilla, menier o al mojo de ajo</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Brocheta de camarón</span><span class="menu-price">$349</span></div><p class="menu-desc">Morrón, cebolla, tocino, champiñones, jitomate</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Camarones cerveza</span><span class="menu-price">$349</span></div><p class="menu-desc">Rebozado en pasta de cerveza, anís de cebolla y morrón</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Camarones tricolor</span><span class="menu-price">$349</span></div><p class="menu-desc">Cilantro, jitomate, chile en vinagre, crema, queso asadero, tequila</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Camarones Lola</span><span class="menu-price">$349</span></div><p class="menu-desc">Chile verde poblano, vino blanco y plátano macho frito</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Camarones al sartén</span><span class="menu-price">$349</span></div><p class="menu-desc">Pimiento verde, cebolla, paprika</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Camarones a la italiana</span><span class="menu-price">$349</span></div><p class="menu-desc">Tocino, cebolla, ajo, puré de tomate, crema, vino blanco</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Filete de camarón</span><span class="menu-price">$349</span></div><p class="menu-desc">Medallón de camarones, tocino, salsa chablis, champiñones</p></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Salmón al gusto</span><span class="menu-price">$337</span></div><p class="menu-desc">Finas hierbas, cacerola, parrilla, mango, naranja o ajo</p></div>
+      </div>
+    </div>
+
+    <!-- COMPLEMENTOS -->
+    <div class="tab-panel" id="complementos" role="tabpanel">
+      <h2 class="category-title">Complementos</h2>
+      <p class="category-desc">Para acompañar su platillo</p>
+      <div class="menu-grid">
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Guacamole</span><span class="menu-price">$82</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Papa al horno</span><span class="menu-price">$60</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Papas a la francesa</span><span class="menu-price">$75</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Papa rellena</span><span class="menu-price">$85</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Puré de papa</span><span class="menu-price">$50</span></div></div>
+        <div class="menu-card"><div class="menu-card-head"><span class="menu-name">Puré de camote</span><span class="menu-price">$55</span></div></div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</main>
+
+<!-- FOOTER -->
+<footer class="menu-footer">
+  <p>© 2025 Las Trojes de La Loma · Morelia, Michoacán · 443 314 7344</p>
+  <a href="https://wa.me/524433147344?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20una%20reservaci%C3%B3n%20en%20Las%20Trojes"
+     target="_blank" rel="noopener noreferrer" class="wa-link">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Reservar mesa
+  </a>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.classList.remove('active');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById(tab).classList.add('active');
+      // Scroll to top of content
+      document.querySelector('.menu-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
