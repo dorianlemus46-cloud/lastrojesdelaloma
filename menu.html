@@ -138,6 +138,30 @@
       top: 64px;
       z-index: 9;
     }
+    /* Fade derecho — indica que hay más categorías al deslizar */
+    .tabs-wrap::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 64px;
+      background: linear-gradient(to right, transparent, var(--espresso) 80%);
+      pointer-events: none;
+      z-index: 10;
+      transition: opacity 0.4s ease;
+    }
+    .tabs-wrap.tabs-end::after { opacity: 0; }
+    /* Flecha indicadora */
+    .tabs-hint {
+      position: absolute;
+      right: 10px; top: 50%; transform: translateY(-50%);
+      z-index: 11; pointer-events: none;
+      display: flex; align-items: center; gap: 4px;
+      color: var(--gold); opacity: 0.85;
+      transition: opacity 0.4s ease;
+    }
+    .tabs-hint svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.4s ease-in-out infinite; }
+    @keyframes nudge { 0%,100%{transform:translateX(0)} 50%{transform:translateX(4px)} }
+    .tabs-wrap.tabs-end .tabs-hint { opacity: 0; }
     .tabs-scroll {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
@@ -363,8 +387,11 @@
 </div>
 
 <!-- TABS BAR -->
-<div class="tabs-wrap">
-  <div class="tabs-scroll">
+<div class="tabs-wrap" id="tabsWrap">
+  <div class="tabs-hint" id="tabsHint" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+  </div>
+  <div class="tabs-scroll" id="tabsScroll">
     <div class="tabs" role="tablist" aria-label="Categorías del menú">
       <button class="tab-btn active" data-tab="entradas" role="tab" aria-selected="true">Entradas</button>
       <button class="tab-btn" data-tab="ensaladas" role="tab" aria-selected="false">Ensaladas</button>
@@ -610,8 +637,23 @@
       document.getElementById(tab).classList.add('active');
       // Scroll to top of content
       document.querySelector('.menu-body').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Hide hint once user taps a tab
+      document.getElementById('tabsWrap').classList.add('tabs-end');
     });
   });
+
+  // Fade out scroll hint once user scrolls the tab bar
+  var tabsScroll = document.getElementById('tabsScroll');
+  var tabsWrap   = document.getElementById('tabsWrap');
+  if (tabsScroll) {
+    tabsScroll.addEventListener('scroll', function() {
+      if (tabsScroll.scrollLeft > 10) tabsWrap.classList.add('tabs-end');
+    }, { passive: true });
+    // If all tabs already fit (desktop), hide hint immediately
+    if (tabsScroll.scrollWidth <= tabsScroll.clientWidth) {
+      tabsWrap.classList.add('tabs-end');
+    }
+  }
 </script>
 
 </body>
