@@ -37,7 +37,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 17px; }
     body {
       font-family: var(--font-b);
       background: var(--espresso);
@@ -279,9 +279,10 @@
     .amb-text p { font-size: 0.82rem; color: var(--text-muted); }
 
     /* ── UBICACIÓN ────────────── */
-    #ubicacion { background: var(--brown); padding: 0; }
-    .mapa-wrap iframe { width: 100%; height: 500px; display: block; border: none; }
-    .mapa-btn-row { background: var(--brown-mid); text-align: center; padding: 32px 24px; }
+    #ubicacion { background: var(--brown); padding: 48px 0; }
+    .mapa-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .mapa-wrap iframe { width: 100%; height: 400px; display: block; border: none; border-radius: 12px; }
+    .mapa-btn-row { text-align: center; padding: 28px 24px 0; }
     .btn-maps {
       display: inline-flex; align-items: center; gap: 10px;
       padding: 14px 32px; border-radius: 6px; background: var(--gold);
@@ -423,6 +424,7 @@
 
     /* ── RESPONSIVE ───────────── */
     @media (max-width: 768px) {
+      html { font-size: 17px; }
       .nav-links { display: none; }
       .nav-hamburger { display: flex; }
       .historia-grid { grid-template-columns: 1fr; gap: 44px; }
@@ -431,7 +433,6 @@
       .historia-photo::before { display: none; }
       .stats-row { grid-template-columns: 1fr; gap: 10px; }
       .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
-      .galeria-item:first-child { grid-row: 1; }
       .ambiente-grid { grid-template-columns: 1fr; }
       .hours-display { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -440,8 +441,9 @@
       .wa-float { bottom: 18px; right: 18px; }
     }
     @media (max-width: 480px) {
+      html { font-size: 16px; }
       .hero-title { font-size: 2.2rem; }
-      .galeria-grid { grid-template-columns: 1fr; grid-template-rows: repeat(4,220px); }
+      .galeria-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3,220px); }
       .galeria-item:first-child { grid-row: 1; }
     }
 
@@ -606,7 +608,7 @@
       title="Mapa Las Trojes de La Loma" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
   </div>
   <div class="mapa-btn-row">
-    <a href="https://www.google.com/maps/place/Las+Trojes+de+La+Loma/@19.6803301,-101.1841292,17z"
+    <a href="https://www.google.com/maps/place/Las+Trojes+de+La+Loma/@19.6803351,-101.1867041,17z/data=!3m1!4b1!4m6!3m5!1s0x842d0de8239403c9:0xa2d92e7a471cfb99!8m2!3d19.6803301!4d-101.1841292!16s%2Fg%2F1tcxk2hg"
        target="_blank" rel="noopener noreferrer" class="btn-maps">
       <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
       Abrir en Google Maps
@@ -647,7 +649,7 @@
         <span class="contact-tile-icon">✉️</span>
         <div class="contact-tile-label">Correo electrónico</div>
         <div class="contact-tile-val">lastrojes51@gmail.com</div>
-        <a href="mailto:lastrojes51@gmail.com" class="btn-tile btn-tile-outline">Enviar correo</a>
+        <a href="mailto:lastrojes51@gmail.com" class="btn-tile btn-tile-gold">Enviar correo</a>
       </div>
       <div class="contact-tile fi" data-delay="0.2">
         <span class="contact-tile-icon">💬</span>
